@@ -203,6 +203,7 @@
 
     <header>
         <h1><a href="index.html">Noraset Hunlor</a></h1>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         <nav>
             <a href="index.html">Home</a>
             <a href="about.html">About Me</a>
@@ -292,6 +293,12 @@
             <p>© 2026 Your Name. All rights reserved.</p>
         </footer>
     </div>
+<script>
+    function toggleMenu() {
+        const nav = document.querySelector('nav');
+        nav.classList.toggle('active');
+    }
+</script>
 
 </body>
 </html>
