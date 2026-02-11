@@ -6,13 +6,26 @@
     <title>About Me | Noraset Hunlor</title>
     <!-- เชื่อมต่อกับ style.css หลัก -->
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* --- CSS เฉพาะหน้า About (ส่วนที่ style.css ไม่มี) --- */
-        
+    <style>        
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px;
+        }
+
+        /* ตกแต่งรูปโปรไฟล์ */
+        .profile-container {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .profile-img {
+            width: 200px;  /* ปรับขนาดรูป */
+            height: 200px;
+            object-fit: cover; /* ให้รูปไม่เบี้ยวถ้าไม่ใช่สี่เหลี่ยมจัตุรัส */
+            border-radius: 50%; /* ทำรูปเป็นวงกลม */
+            border: 4px solid #BC2B1A; /* ขอบสีแดง */
+            box-shadow: 0 0 30px rgba(255, 122, 41, 0.3); /* เงาสีส้มเรืองแสง */
         }
 
         /* Skills Grid */
@@ -148,7 +161,9 @@
     <div class="container">
         
         <section id="about">
-            <img src="IMG/IMG_8735.png">
+            <div class="profile-container">
+                <img src="IMG/IMG_8735.png" alt="Profile Picture" class="profile-img">
+            </div>
             <h2>About Me</h2>
             <p style="font-size: 1.1rem; color: #ddd;">
                 I am a passionate <strong>Game Developer and Artist</strong> with a focus on creating immersive gameplay experiences. 
