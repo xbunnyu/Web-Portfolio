@@ -278,3 +278,48 @@ footer {
     nav a { margin: 5px; }
     .hero h2 { font-size: 30px; }
 }
+
+/* --- 3. MEDIA QUERIES (ส่วนสำคัญสำหรับมือถือ) --- */
+@media (max-width: 768px) {
+    /* ปรับ Header */
+    header {
+        padding: 15px 20px;
+    }
+
+    /* แสดงปุ่ม Hamburger */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* ซ่อนเมนูไว้ก่อน */
+    nav {
+        display: none; 
+        width: 100%; /* กว้างเต็มจอ */
+        flex-direction: column; /* เรียงแนวตั้ง */
+        margin-top: 15px;
+        border-top: 1px solid rgba(188, 43, 26, 0.3);
+        padding-top: 10px;
+    }
+
+    /* Class นี้จะถูกเติมด้วย JS เมื่อกดปุ่ม */
+    nav.active {
+        display: flex;
+        animation: slideDown 0.3s ease-out;
+    }
+
+    /* จัดลิ้งค์ในเมนูมือถือ */
+    nav a {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        margin: 5px 0;
+        background: rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* Animation เลื่อนลง */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
