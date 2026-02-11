@@ -1,4 +1,4 @@
-/* style.css - Responsive Hamburger Menu Update */
+/* style.css - Fix Menu Slide/Overlay */
 
 /* --- 1. GLOBAL RESET --- */
 *, *::before, *::after {
@@ -24,10 +24,11 @@ header {
   background: rgba(10, 10, 10, 0.95);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000; /* เพิ่ม z-index ให้สูงกว่าทุกอย่าง */
   border-radius: 0 0 20px 20px;
   backdrop-filter: blur(10px);
-  flex-wrap: wrap; /* สำคัญ: ยอมให้เมนูตกลงมาบรรทัดใหม่ได้ */
+  /* ลบ flex-wrap ออกเพื่อให้บน PC เมนูไม่หล่นลงมา */
+  white-space: nowrap; 
 }
 
 header h1 {
@@ -35,9 +36,10 @@ header h1 {
   letter-spacing: 2px;
   margin: 0;
   font-size: 1.5rem;
+  flex-shrink: 0; /* ป้องกันโลโก้หด */
 }
 
-/* ปุ่ม Hamburger (ซ่อนไว้บนจอคอม) */
+/* --- ปุ่ม Hamburger (ซ่อนบน PC) --- */
 .menu-toggle {
     display: none; 
     background: transparent;
@@ -75,11 +77,11 @@ nav a:hover {
   background: rgba(188, 43, 26, 0.2);
 }
 
-/* --- 3. MEDIA QUERIES (ส่วนสำคัญสำหรับมือถือ) --- */
+/* --- 3. MEDIA QUERIES (สำหรับมือถือ/แท็บเล็ต) --- */
 @media (max-width: 768px) {
-    /* ปรับ Header */
     header {
         padding: 15px 20px;
+        flex-wrap: wrap; /* บนมือถือให้ wrap ได้ถ้าจำเป็น */
     }
 
     /* แสดงปุ่ม Hamburger */
@@ -87,29 +89,33 @@ nav a:hover {
         display: block;
     }
 
-    /* ซ่อนเมนูไว้ก่อน */
+    /* --- ส่วนเมนูมือถือ (แก้ให้ลอยทับเนื้อหา) --- */
     nav {
         display: none; 
-        width: 100%; /* กว้างเต็มจอ */
-        flex-direction: column; /* เรียงแนวตั้ง */
-        margin-top: 15px;
-        border-top: 1px solid rgba(188, 43, 26, 0.3);
-        padding-top: 10px;
+        position: absolute; /* ทำให้ลอยอยู่เหนือเนื้อหา */
+        top: 100%; /* เริ่มต้นที่ขอบล่างของ Header */
+        left: 0;
+        width: 100%;
+        background-color: rgba(10, 10, 10, 0.98); /* พื้นหลังทึบแสง */
+        flex-direction: column;
+        padding: 20px 0;
+        border-bottom: 2px solid #BC2B1A;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5); /* เงา */
+        z-index: 999;
     }
 
-    /* Class นี้จะถูกเติมด้วย JS เมื่อกดปุ่ม */
     nav.active {
         display: flex;
         animation: slideDown 0.3s ease-out;
     }
 
-    /* จัดลิ้งค์ในเมนูมือถือ */
     nav a {
         width: 100%;
         text-align: center;
-        padding: 12px;
-        margin: 5px 0;
-        background: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        margin: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 1.1rem; /* ตัวหนังสือใหญ่ขึ้นกดง่าย */
     }
 }
 
@@ -120,7 +126,7 @@ nav a:hover {
 }
 
 
-/* --- 4. HERO SECTION --- */
+/* --- 4. HERO & SECTIONS --- */
 .hero {
   text-align: center;
   padding: 80px 20px;
@@ -133,7 +139,6 @@ nav a:hover {
   margin-bottom: 10px;
 }
 
-/* --- 5. SHARED SECTIONS --- */
 section {
     padding: 60px 20px;
     max-width: 1200px;
@@ -164,7 +169,7 @@ section h3 {
     max-width: 100%;
 }
 
-/* --- 6. HORIZONTAL SCROLL (Home Page) --- */
+/* --- 5. CARDS & SCROLL --- */
 .horizontal-scroll {
   display: flex;
   overflow-x: auto;
@@ -175,7 +180,6 @@ section h3 {
   scrollbar-color: #BC2B1A #1A0E0A;
   -webkit-overflow-scrolling: touch;
 }
-
 .horizontal-scroll::-webkit-scrollbar { height: 8px; }
 .horizontal-scroll::-webkit-scrollbar-track { background: #1A0E0A; border-radius: 4px; }
 .horizontal-scroll::-webkit-scrollbar-thumb { background: #BC2B1A; border-radius: 4px; }
@@ -185,7 +189,6 @@ section h3 {
     scroll-snap-align: center;
 }
 
-/* --- 7. CARD STYLES --- */
 .frame {
   background: #1A0E0A;
   padding: 12px;
@@ -276,7 +279,6 @@ section h3 {
 }
 .dev-info h4 { margin-top: 0; }
 
-/* --- 8. BUTTONS & FOOTER --- */
 .button-container {
     text-align: center;
     margin-top: 30px;
@@ -310,7 +312,6 @@ footer {
   border-radius: 20px 20px 0 0;
 }
 
-/* --- 9. FULL GRID --- */
 .full-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -334,43 +335,3 @@ footer {
     .hero h2 { font-size: 2rem; }
     header h1 { font-size: 1.5rem; }
 }
-```
-
-### 2. วิธีแก้ไฟล์ HTML (`index.html` และหน้าอื่นๆ)
-
-คุณต้องแก้ไขไฟล์ HTML ทุกหน้า (`index.html`, `about.html`, `project.html`, ฯลฯ) ใน 2 จุดครับ
-
-**จุดที่ 1: เพิ่มปุ่ม 3 ขีด ใน `<header>`**
-หาแท็ก `<header>` ของเดิม แล้วแก้ให้เป็นแบบนี้ครับ (เพิ่ม `<button>` เข้าไป):
-
-```html
-<header>
-  <!-- ส่วนโลโก้ -->
-  <h1><a href="index.html" style="color: #FF7A29; text-decoration: none;">Nyuxxi Portfolio</a></h1>
-  
-  <!-- เพิ่มปุ่มเมนู 3 ขีด ตรงนี้! -->
-  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-
-  <!-- ส่วนเมนู -->
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About Me</a>
-    <a href="2d.html">Pixel Art</a>
-    <a href="3d.html">3D Models</a>
-    <a href="project.html">Projects</a>
-  </nav>
-</header>
-```
-
-**จุดที่ 2: เพิ่ม Script สั่งงานปุ่ม**
-ให้เพิ่มโค้ด JavaScript นี้นิดหน่อยก่อนปิด `</body>` (ล่างสุดของไฟล์):
-
-```html
-<script>
-    function toggleMenu() {
-        const nav = document.querySelector('nav');
-        nav.classList.toggle('active');
-    }
-</script>
-</body>
-</html>
