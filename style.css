@@ -1,273 +1,79 @@
-﻿/* home.css - Updated */
+/* style.css - Responsive Hamburger Menu Update */
+
+/* --- 1. GLOBAL RESET --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background: #0A0A0A;
   color: #fff;
   font-family: 'Trebuchet MS', sans-serif;
-  overflow-x: hidden; /* ป้องกันหน้าเว็บเลื่อนซ้ายขวาทั้งหน้า */
+  overflow-x: hidden;
+  line-height: 1.6;
 }
 
-/* --- HEADER & NAV --- */
+/* --- 2. HEADER & NAVIGATION --- */
 header {
-  padding: 20px 40px;
+  padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid #BC2B1A;
   background: rgba(10, 10, 10, 0.95);
-  position: sticky; /* ทำให้เมนูติดด้านบนเวลาเลื่อน */
+  position: sticky;
   top: 0;
   z-index: 100;
-  border-radius: 0 0 20px 20px; /* เพิ่มความมนด้านล่าง header */
+  border-radius: 0 0 20px 20px;
+  backdrop-filter: blur(10px);
+  flex-wrap: wrap; /* สำคัญ: ยอมให้เมนูตกลงมาบรรทัดใหม่ได้ */
 }
 
 header h1 {
   color: #FF7A29;
   letter-spacing: 2px;
   margin: 0;
+  font-size: 1.5rem;
+}
+
+/* ปุ่ม Hamburger (ซ่อนไว้บนจอคอม) */
+.menu-toggle {
+    display: none; 
+    background: transparent;
+    border: 2px solid #BC2B1A;
+    color: #FF7A29;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px 12px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.menu-toggle:hover {
+    background: #BC2B1A;
+    color: #fff;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 nav a {
-  margin-left: 20px;
+  margin-left: 0;
   color: #FF7A29;
   text-decoration: none;
   padding: 8px 15px;
-  border-radius: 20px; /* ความมนของลิ้งค์เมนู */
+  border-radius: 20px;
   transition: 0.3s;
+  font-size: 0.95rem;
 }
 
 nav a:hover {
   background: rgba(188, 43, 26, 0.2);
 }
-
-/* --- HERO SECTION --- */
-.hero {
-  text-align: center;
-  padding: 100px 20px;
-  background: radial-gradient(circle at top, rgba(255,122,41,0.3), transparent 70%);
-}
-
-.hero h2 {
-  font-size: 40px;
-  color: #FF7A29;
-  margin-bottom: 10px;
-}
-
-/* --- SHARED SECTION STYLES --- */
-section {
-    padding: 60px 40px;
-}
-
-section h3 {
-  color: #FF7A29;
-  margin-bottom: 30px;
-  font-size: 1.8em;
-  padding-left: 15px;
-  border-left: 5px solid #BC2B1A; /* เพิ่มลูกเล่นหัวข้อ */
-  border-radius: 5px;
-}
-
-.bb-showcase, .gamedev {
-    background: #080808; /* สีพื้นหลังเข้มขึ้นนิดหน่อยสำหรับ section คั่น */
-}
-
-
-/* --- NEW: HORIZONTAL SCROLL CONTAINER (สำหรับหน้าแรก) --- */
-.horizontal-scroll {
-  display: flex;
-  overflow-x: auto;
-  gap: 30px;
-  padding: 20px 10px 40px 10px; /* Padding ล่างเยอะหน่อยเผื่อเงาและ Scrollbar */
-  scroll-snap-type: x mandatory; /* ทำให้เวลาเลื่อนแล้วดีดเข้าล็อค */
-  
-  /* ปรับแต่ง Scrollbar */
-  scrollbar-width: thin;
-  scrollbar-color: #BC2B1A #1A0E0A;
-}
-
-/* สไตล์ Scrollbar สำหรับ Chrome/Safari */
-.horizontal-scroll::-webkit-scrollbar {
-    height: 8px;
-}
-.horizontal-scroll::-webkit-scrollbar-track {
-    background: #1A0E0A;
-    border-radius: 4px;
-}
-.horizontal-scroll::-webkit-scrollbar-thumb {
-    background: #BC2B1A;
-    border-radius: 4px;
-}
-
-
-/* --- NEW: VIEW ALL BUTTON --- */
-.button-container {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.view-all-btn {
-    display: inline-block;
-    padding: 12px 30px;
-    background: #BC2B1A;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 30px; /* ปุ่มกลมมนมาก */
-    border: 2px solid #BC2B1A;
-    transition: 0.3s;
-    box-shadow: 0 5px 15px rgba(188, 43, 26, 0.3);
-}
-
-.view-all-btn:hover {
-    background: transparent;
-    color: #FF7A29;
-    border-color: #FF7A29;
-    box-shadow: 0 5px 25px rgba(255, 122, 41, 0.5);
-    transform: translateY(-3px);
-}
-
-
-/* --- CARD STYLES (Updated for Roundness & Flex) --- */
-
-/* Common Flex Item properties for scroll bar */
-.frame, .bb-card, .dev-card {
-    flex: 0 0 auto; /* ไม่ให้ย่อขยายตาม flex */
-    scroll-snap-align: center; /* ให้หยุดตรงกลางจอเสมอ */
-}
-
-
-/* Pixel Gallery Frames */
-
-.frame {
-  background: #1A0E0A;
-  padding: 12px;
-  border: 3px solid #3C1F1A;
-  box-shadow: 0px 0px 25px rgba(255,122,41,0.15);
-  position: relative;
-  transition: 0.3s;
-  border-radius: 20px;
-  
-  
-  width: 280px; 
-  min-width: 280px; 
-  height: 380px; 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; 
-  
-  flex: 0 0 auto;
-  scroll-snap-align: center;
-}
-
-.frame:hover {
-  box-shadow: 0px 0px 40px rgba(255,122,41,0.4);
-  transform: translateY(-8px);
-  border-color: #FF7A29;
-}
-
-.frame img {
-  width: 100%;
-  height: 250px; 
-  object-fit: contain; 
-  background: #000;
-  border-radius: 15px;
-}
-
-/* Blockbench Cards */
-.bb-card {
-  background: #111;
-  border: 3px solid #3C1F1A;
-  box-shadow: 0 0 25px rgba(255,90,20,0.25);
-  padding: 12px;
-  transition: 0.3s;
-  border-radius: 24px; /* เพิ่มความมน */
-  min-width: 320px; /* ความกว้างขั้นต่ำสำหรับ Scroll */
-}
-
-.bb-card:hover {
-  box-shadow: 0 0 35px rgba(255,90,20,0.45);
-  transform: translateY(-8px);
-  border-color: #FF7A29;
-}
-
-.bb-card iframe, .bb-card img {
-  width: 100%;
-  height: 280px;
-  background: #000;
-  border-radius: 18px; /* จอแสดงผลมน */
-}
-
-.bb-label {
-  margin-top: 12px;
-  padding: 12px;
-  background: #3C1F1A;
-  color: #FF7A29;
-  text-align: center;
-  border-radius: 15px; 
-  border-top: none;
-}
-
-
-/* Game Dev Cards */
-.dev-card {
-  background: #111;
-  border: 2px solid #BC2B1A;
-  box-shadow: 0 0 20px rgba(255,80,20,0.15);
-  position: relative;
-  transition: 0.3s;
-  overflow: hidden;
-  border-radius: 24px; /* เพิ่มความมน */
-  min-width: 300px; /* ความกว้างขั้นต่ำสำหรับ Scroll */
-}
-
-.dev-card img {
-  width: 100%;
-  height: 200px; /* กำหนดความสูงรูปให้เท่ากัน */
-  object-fit: cover; /* ให้รูปเต็มพื้นที่โดยไม่เสียสัดส่วน */
-  display: block;
-}
-
-.dev-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 40px rgba(255,80,20,0.4);
-}
-
-.dev-info {
-  background: #1A0E0A;
-  padding: 20px;
-  color: #FF7A29;
-}
-
-.dev-info h4 { margin-top: 0; }
-
-
-/* --- FOOTER --- */
-footer {
-  margin-top: 40px;
-  text-align: center;
-  padding: 30px;
-  background: #080808;
-  border-top: 2px solid #BC2B1A;
-  color: #FF7A29;
-  border-radius: 20px 20px 0 0; /* มนด้านบนของ Footer */
-}
-
-/* --- GRID STYLES (สำหรับหน้าแยก) --- */
-/* ใช้ class นี้ในหน้าแยก เพื่อให้แสดงเป็นตารางเหมือนเดิม */
-.full-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 40px;
-  padding-bottom: 40px;
-}
-/* ในหน้าแยก ไม่ต้องฟิกซ์ความกว้างขั้นต่ำ */
-.full-grid .frame, 
-.full-grid .bb-card, 
-.full-grid .dev-card {
-    min-width: auto;
-    flex: none;
-}
-
 
 /* --- 3. MEDIA QUERIES (ส่วนสำคัญสำหรับมือถือ) --- */
 @media (max-width: 768px) {
@@ -313,3 +119,258 @@ footer {
     to { opacity: 1; transform: translateY(0); }
 }
 
+
+/* --- 4. HERO SECTION --- */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: radial-gradient(circle at top, rgba(255,122,41,0.3), transparent 70%);
+}
+
+.hero h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #FF7A29;
+  margin-bottom: 10px;
+}
+
+/* --- 5. SHARED SECTIONS --- */
+section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section h3 {
+  color: #FF7A29;
+  margin-bottom: 30px;
+  font-size: 1.8em;
+  padding-left: 15px;
+  border-left: 5px solid #BC2B1A;
+  border-radius: 5px;
+}
+
+.bb-showcase, .gamedev {
+    background: #080808;
+    width: 100%;
+    max-width: 100%;
+}
+
+.bb-showcase > div, .gamedev > div, .bb-showcase h3, .gamedev h3, .bb-showcase .button-container, .gamedev .button-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.bb-showcase .horizontal-scroll, .gamedev .horizontal-scroll {
+    max-width: 100%;
+}
+
+/* --- 6. HORIZONTAL SCROLL (Home Page) --- */
+.horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px 20px 40px 20px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: #BC2B1A #1A0E0A;
+  -webkit-overflow-scrolling: touch;
+}
+
+.horizontal-scroll::-webkit-scrollbar { height: 8px; }
+.horizontal-scroll::-webkit-scrollbar-track { background: #1A0E0A; border-radius: 4px; }
+.horizontal-scroll::-webkit-scrollbar-thumb { background: #BC2B1A; border-radius: 4px; }
+
+.frame, .bb-card, .dev-card {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+}
+
+/* --- 7. CARD STYLES --- */
+.frame {
+  background: #1A0E0A;
+  padding: 12px;
+  border: 3px solid #3C1F1A;
+  box-shadow: 0px 0px 25px rgba(255,122,41,0.15);
+  position: relative;
+  transition: 0.3s;
+  border-radius: 20px;
+  width: 280px; 
+  height: auto;
+  min-height: 380px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+}
+.frame:hover {
+  box-shadow: 0px 0px 40px rgba(255,122,41,0.4);
+  transform: translateY(-5px);
+  border-color: #FF7A29;
+}
+.frame img {
+  width: 100%;
+  height: 250px; 
+  object-fit: contain; 
+  background: #000;
+  border-radius: 15px;
+}
+
+.bb-card {
+  background: #111;
+  border: 3px solid #3C1F1A;
+  box-shadow: 0 0 25px rgba(255,90,20,0.25);
+  padding: 12px;
+  transition: 0.3s;
+  border-radius: 24px;
+  width: 320px;
+  max-width: 100%;
+}
+.bb-card:hover {
+  box-shadow: 0 0 35px rgba(255,90,20,0.45);
+  transform: translateY(-5px);
+  border-color: #FF7A29;
+}
+.bb-card iframe, .bb-card img {
+  width: 100%;
+  height: 250px;
+  background: #000;
+  border-radius: 18px;
+}
+.bb-label {
+  margin-top: 12px;
+  padding: 12px;
+  background: #3C1F1A;
+  color: #FF7A29;
+  text-align: center;
+  border-radius: 15px; 
+  border-top: none;
+  font-size: 0.9rem;
+}
+
+.dev-card {
+  background: #111;
+  border: 2px solid #BC2B1A;
+  box-shadow: 0 0 20px rgba(255,80,20,0.15);
+  position: relative;
+  transition: 0.3s;
+  overflow: hidden;
+  border-radius: 24px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+.dev-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+.dev-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 40px rgba(255,80,20,0.4);
+}
+.dev-info {
+  background: #1A0E0A;
+  padding: 20px;
+  color: #FF7A29;
+  flex-grow: 1;
+}
+.dev-info h4 { margin-top: 0; }
+
+/* --- 8. BUTTONS & FOOTER --- */
+.button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+.view-all-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #BC2B1A;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    border: 2px solid #BC2B1A;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(188, 43, 26, 0.3);
+}
+.view-all-btn:hover {
+    background: transparent;
+    color: #FF7A29;
+    border-color: #FF7A29;
+    box-shadow: 0 5px 25px rgba(255, 122, 41, 0.5);
+    transform: translateY(-3px);
+}
+footer {
+  margin-top: 40px;
+  text-align: center;
+  padding: 30px;
+  background: #080808;
+  border-top: 2px solid #BC2B1A;
+  color: #FF7A29;
+  border-radius: 20px 20px 0 0;
+}
+
+/* --- 9. FULL GRID --- */
+.full-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding-bottom: 40px;
+}
+.full-grid .frame, .full-grid .bb-card, .full-grid .dev-card {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .full-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        gap: 20px;
+    }
+}
+@media (max-width: 480px) {
+    .hero h2 { font-size: 2rem; }
+    header h1 { font-size: 1.5rem; }
+}
+```
+
+### 2. วิธีแก้ไฟล์ HTML (`index.html` และหน้าอื่นๆ)
+
+คุณต้องแก้ไขไฟล์ HTML ทุกหน้า (`index.html`, `about.html`, `project.html`, ฯลฯ) ใน 2 จุดครับ
+
+**จุดที่ 1: เพิ่มปุ่ม 3 ขีด ใน `<header>`**
+หาแท็ก `<header>` ของเดิม แล้วแก้ให้เป็นแบบนี้ครับ (เพิ่ม `<button>` เข้าไป):
+
+```html
+<header>
+  <!-- ส่วนโลโก้ -->
+  <h1><a href="index.html" style="color: #FF7A29; text-decoration: none;">Nyuxxi Portfolio</a></h1>
+  
+  <!-- เพิ่มปุ่มเมนู 3 ขีด ตรงนี้! -->
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+  <!-- ส่วนเมนู -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Me</a>
+    <a href="2d.html">Pixel Art</a>
+    <a href="3d.html">3D Models</a>
+    <a href="project.html">Projects</a>
+  </nav>
+</header>
+```
+
+**จุดที่ 2: เพิ่ม Script สั่งงานปุ่ม**
+ให้เพิ่มโค้ด JavaScript นี้นิดหน่อยก่อนปิด `</body>` (ล่างสุดของไฟล์):
+
+```html
+<script>
+    function toggleMenu() {
+        const nav = document.querySelector('nav');
+        nav.classList.toggle('active');
+    }
+</script>
+</body>
+</html>
