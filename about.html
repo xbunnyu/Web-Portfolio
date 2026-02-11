@@ -4,83 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me | Noraset Hunlor</title>
+    <!-- เชื่อมต่อกับ style.css หลัก -->
+    <link rel="stylesheet" href="style.css">
     <style>
-        /* --- CSS STYLES (MATCHING HOME THEME) --- */
-        body {
-            margin: 0;
-            background: #0A0A0A;
-            color: #fff;
-            font-family: 'Trebuchet MS', sans-serif;
-            line-height: 1.6;
-        }
-
-        /* --- Header & Nav (เหมือนหน้า Home) --- */
-        header {
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #BC2B1A;
-            background: rgba(10, 10, 10, 0.95);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-radius: 0 0 20px 20px;
-        }
-
-        header h1 {
-            color: #FF7A29;
-            letter-spacing: 2px;
-            margin: 0;
-            font-size: 1.8rem;
-        }
-
-        header h1 a {
-            color: #FF7A29;
-            text-decoration: none;
-        }
-
-        nav a {
-            margin-left: 20px;
-            color: #FF7A29;
-            text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            background: rgba(188, 43, 26, 0.2);
-        }
-
-        /* --- Container --- */
+        /* --- CSS เฉพาะหน้า About (ส่วนที่ style.css ไม่มี) --- */
+        
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px;
         }
 
-        /* --- Headings --- */
-        section {
-            padding: 40px 0;
-        }
-
-        h2 {
-            color: #FF7A29;
-            margin-bottom: 30px;
-            font-size: 2rem;
-            padding-left: 15px;
-            border-left: 5px solid #BC2B1A;
-            border-radius: 4px;
-        }
-
-        p.subtitle {
-            font-size: 1.2rem;
-            color: #ccc;
-            margin-top: 5px;
-        }
-
-        /* --- Skills Grid --- */
+        /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -91,7 +26,7 @@
             background: #1A0E0A;
             padding: 20px;
             text-align: center;
-            border-radius: 20px; /* ความมน */
+            border-radius: 20px;
             border: 2px solid #3C1F1A;
             transition: 0.3s;
             box-shadow: 0px 0px 15px rgba(255,122,41,0.1);
@@ -109,7 +44,7 @@
             box-shadow: 0px 0px 25px rgba(255,122,41,0.3);
         }
 
-        /* --- Project Cards --- */
+        /* Project Cards (เฉพาะหน้านี้) */
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -119,10 +54,12 @@
         .project-card {
             background: #111;
             border: 2px solid #BC2B1A;
-            border-radius: 24px; /* ความมน */
+            border-radius: 24px;
             overflow: hidden;
             transition: 0.3s;
             box-shadow: 0 0 20px rgba(255,80,20,0.15);
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
@@ -143,6 +80,7 @@
         .project-info {
             padding: 20px;
             background: #1A0E0A;
+            flex-grow: 1;
         }
 
         .project-info h3 {
@@ -150,6 +88,7 @@
             margin-top: 0;
         }
 
+        /* Tags */
         .tags {
             margin-bottom: 15px;
         }
@@ -165,7 +104,7 @@
             margin-bottom: 5px;
         }
 
-        /* --- Contact Button --- */
+        /* Contact Button */
         .btn {
             display: inline-block;
             padding: 12px 35px;
@@ -187,30 +126,23 @@
             box-shadow: 0 5px 25px rgba(255, 122, 41, 0.5);
             transform: translateY(-3px);
         }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: #FF7A29;
-            font-size: 0.9rem;
-            border-top: 2px solid #BC2B1A;
-            margin-top: 40px;
-        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1><a href="index.html">Noraset Hunlor</a></h1>
+        <h1><a href="index.html" style="color: #FF7A29; text-decoration: none;">Nyuxxi Portfolio</a></h1>
+        
+        <!-- เพิ่มปุ่มเมนูสำหรับมือถือ -->
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
         <nav>
             <a href="index.html">Home</a>
-            <a href="about.html">About Me</a>
+            <a href="about.html" style="background: rgba(188, 43, 26, 0.2);">About Me</a>
             <a href="2d.html">Pixel Art</a>
             <a href="3d.html">3D Models</a>
             <a href="project.html">Projects</a>
-         </nav>
+        </nav>
     </header>
 
     <div class="container">
@@ -222,7 +154,7 @@
                 With over 5,000 hours of experience in pixel art and a strong background in Unity and C#, 
                 I bridge the gap between technical programming and creative asset design.
             </p>
-            <p class="subtitle">Sripatum University | Science-Math Background</p>
+            <p class="subtitle" style="color: #aaa; margin-top: 10px;">Sripatum University | Science-Math Background</p>
         </section>
 
         <section id="skills">
@@ -241,19 +173,14 @@
                     <h3>C#</h3>
                 </div>
                 <div class="skill-card">
-                    <h3>Script</h3>
-                </div>
-                <div class="skill-card">
                     <h3>Photoshop</h3>
-                </div>
-                <div class="skill-card">
-                    <h3>Illustrator</h3>
                 </div>
                 <div class="skill-card">
                     <h3>Maya</h3>
                 </div>
                 <div class="skill-card">
                     <h3>AI Tools</h3>
+                    <p style="font-size: 0.8rem; color: #aaa; margin-top: 5px;">Workflow & Coding</p>
                 </div>
             </div>
         </section>
@@ -263,7 +190,10 @@
             <div class="project-grid">
                 
                 <div class="project-card">
-                    <div class="project-image">[ Game Screenshot ]</div>
+                    <!-- ใส่รูปจริงที่นี่ -->
+                    <div class="project-image">
+                        <span style="color: #FF7A29;">[ Game Screenshot ]</span>
+                    </div>
                     <div class="project-info">
                         <h3>Mini Thesis Project</h3>
                         <p class="tags"><span>Unity</span> <span>C#</span> <span>Aseprite</span></p>
@@ -272,7 +202,9 @@
                 </div>
 
                 <div class="project-card">
-                    <div class="project-image">[ Model Screenshot ]</div>
+                    <div class="project-image">
+                        <span style="color: #FF7A29;">[ Model Screenshot ]</span>
+                    </div>
                     <div class="project-info">
                         <h3>Minecraft Custom NPCs</h3>
                         <p class="tags"><span>Blockbench</span> <span>Design</span></p>
@@ -290,15 +222,17 @@
         </section>
 
         <footer>
-            <p>© 2026 Your Name. All rights reserved.</p>
+            <p>© 2026 Noraset Hunlor. All rights reserved.</p>
         </footer>
     </div>
-<script>
-    function toggleMenu() {
-        const nav = document.querySelector('nav');
-        nav.classList.toggle('active');
-    }
-</script>
+
+    <!-- สคริปต์สำหรับกดปุ่มเมนูบนมือถือ -->
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        }
+    </script>
 
 </body>
 </html>
