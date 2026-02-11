@@ -1,20 +1,13 @@
-﻿/* style.css - Responsive Update */
-
-/* --- 1. GLOBAL RESET (สำคัญมากสำหรับ Responsive) --- */
-*, *::before, *::after {
-  box-sizing: border-box; /* รวมขอบและ padding ในความกว้าง ไม่ให้กล่องบวม */
-}
-
+﻿/* home.css - Updated */
 body {
   margin: 0;
   background: #0A0A0A;
   color: #fff;
   font-family: 'Trebuchet MS', sans-serif;
-  overflow-x: hidden;
-  line-height: 1.6;
+  overflow-x: hidden; /* ป้องกันหน้าเว็บเลื่อนซ้ายขวาทั้งหน้า */
 }
 
-/* --- 2. HEADER & NAVIGATION --- */
+/* --- HEADER & NAV --- */
 header {
   padding: 20px 40px;
   display: flex;
@@ -22,61 +15,47 @@ header {
   align-items: center;
   border-bottom: 2px solid #BC2B1A;
   background: rgba(10, 10, 10, 0.95);
-  position: sticky;
+  position: sticky; /* ทำให้เมนูติดด้านบนเวลาเลื่อน */
   top: 0;
   z-index: 100;
-  border-radius: 0 0 20px 20px;
-  backdrop-filter: blur(10px); /* เพิ่มความเบลอให้พื้นหลังเมนู */
-  flex-wrap: wrap; /* ให้เมนูขึ้นบรรทัดใหม่ได้ถ้ายาวเกิน */
+  border-radius: 0 0 20px 20px; /* เพิ่มความมนด้านล่าง header */
 }
 
 header h1 {
   color: #FF7A29;
   letter-spacing: 2px;
   margin: 0;
-  font-size: 1.8rem;
-}
-
-nav {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap; /* ให้ลิ้งค์เรียงลงมาถ้าจอเล็ก */
-  justify-content: center;
 }
 
 nav a {
-  margin-left: 0; /* ลบ margin เดิม */
+  margin-left: 20px;
   color: #FF7A29;
   text-decoration: none;
   padding: 8px 15px;
-  border-radius: 20px;
+  border-radius: 20px; /* ความมนของลิ้งค์เมนู */
   transition: 0.3s;
-  font-size: 0.95rem;
-  white-space: nowrap; /* ห้ามคำขึ้นบรรทัดใหม่ในปุ่ม */
 }
 
 nav a:hover {
   background: rgba(188, 43, 26, 0.2);
 }
 
-/* --- 3. HERO SECTION --- */
+/* --- HERO SECTION --- */
 .hero {
   text-align: center;
-  padding: 80px 20px;
+  padding: 100px 20px;
   background: radial-gradient(circle at top, rgba(255,122,41,0.3), transparent 70%);
 }
 
 .hero h2 {
-  font-size: clamp(2rem, 5vw, 3rem); /* ปรับขนาดฟอนต์อัตโนมัติตามขนาดจอ */
+  font-size: 40px;
   color: #FF7A29;
   margin-bottom: 10px;
 }
 
-/* --- 4. SHARED SECTIONS --- */
+/* --- SHARED SECTION STYLES --- */
 section {
-    padding: 60px 20px; /* ลด padding ด้านข้างเล็กน้อย */
-    max-width: 1200px; /* จำกัดความกว้างเนื้อหาไม่ให้ยาวเกินไปบนจอใหญ่ */
-    margin: 0 auto; /* จัดกึ่งกลาง */
+    padding: 60px 40px;
 }
 
 section h3 {
@@ -84,54 +63,81 @@ section h3 {
   margin-bottom: 30px;
   font-size: 1.8em;
   padding-left: 15px;
-  border-left: 5px solid #BC2B1A;
+  border-left: 5px solid #BC2B1A; /* เพิ่มลูกเล่นหัวข้อ */
   border-radius: 5px;
 }
 
 .bb-showcase, .gamedev {
-    background: #080808;
-    width: 100%; /* ให้พื้นหลังเต็มจอ */
-    max-width: 100%; /* Override max-width ด้านบนเฉพาะพื้นหลัง */
-}
-
-/* ต้องสร้าง container ซ้อนข้างในเพื่อให้เนื้อหาอยู่ตรงกลางสำหรับ section ที่มีพื้นหลัง */
-.bb-showcase > div, .gamedev > div, .bb-showcase h3, .gamedev h3, .bb-showcase .button-container, .gamedev .button-container {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-/* ยกเว้น horizontal scroll ที่ต้องเต็มจอ */
-.bb-showcase .horizontal-scroll, .gamedev .horizontal-scroll {
-    max-width: 100%;
+    background: #080808; /* สีพื้นหลังเข้มขึ้นนิดหน่อยสำหรับ section คั่น */
 }
 
 
-/* --- 5. HORIZONTAL SCROLL (Home Page) --- */
+/* --- NEW: HORIZONTAL SCROLL CONTAINER (สำหรับหน้าแรก) --- */
 .horizontal-scroll {
   display: flex;
   overflow-x: auto;
-  gap: 20px;
-  padding: 20px 20px 40px 20px;
-  scroll-snap-type: x mandatory;
+  gap: 30px;
+  padding: 20px 10px 40px 10px; /* Padding ล่างเยอะหน่อยเผื่อเงาและ Scrollbar */
+  scroll-snap-type: x mandatory; /* ทำให้เวลาเลื่อนแล้วดีดเข้าล็อค */
+  
+  /* ปรับแต่ง Scrollbar */
   scrollbar-width: thin;
   scrollbar-color: #BC2B1A #1A0E0A;
-  -webkit-overflow-scrolling: touch; /* ให้ลื่นบน iOS */
 }
 
-.horizontal-scroll::-webkit-scrollbar { height: 8px; }
-.horizontal-scroll::-webkit-scrollbar-track { background: #1A0E0A; border-radius: 4px; }
-.horizontal-scroll::-webkit-scrollbar-thumb { background: #BC2B1A; border-radius: 4px; }
+/* สไตล์ Scrollbar สำหรับ Chrome/Safari */
+.horizontal-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+.horizontal-scroll::-webkit-scrollbar-track {
+    background: #1A0E0A;
+    border-radius: 4px;
+}
+.horizontal-scroll::-webkit-scrollbar-thumb {
+    background: #BC2B1A;
+    border-radius: 4px;
+}
 
-/* Flex Items in Scroll */
+
+/* --- NEW: VIEW ALL BUTTON --- */
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.view-all-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #BC2B1A;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px; /* ปุ่มกลมมนมาก */
+    border: 2px solid #BC2B1A;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(188, 43, 26, 0.3);
+}
+
+.view-all-btn:hover {
+    background: transparent;
+    color: #FF7A29;
+    border-color: #FF7A29;
+    box-shadow: 0 5px 25px rgba(255, 122, 41, 0.5);
+    transform: translateY(-3px);
+}
+
+
+/* --- CARD STYLES (Updated for Roundness & Flex) --- */
+
+/* Common Flex Item properties for scroll bar */
 .frame, .bb-card, .dev-card {
-    flex: 0 0 auto;
-    scroll-snap-align: center;
+    flex: 0 0 auto; /* ไม่ให้ย่อขยายตาม flex */
+    scroll-snap-align: center; /* ให้หยุดตรงกลางจอเสมอ */
 }
 
 
-/* --- 6. CARD STYLES (Responsive) --- */
+/* Pixel Gallery Frames */
 
-/* Pixel Art Frames */
 .frame {
   background: #1A0E0A;
   padding: 12px;
@@ -141,18 +147,21 @@ section h3 {
   transition: 0.3s;
   border-radius: 20px;
   
-  /* ขนาดปกติ */
+  
   width: 280px; 
-  height: auto; /* ปล่อยอิสระเพื่อให้เนื้อหาดัน */
-  min-height: 380px; 
+  min-width: 280px; 
+  height: 380px; 
   display: flex;
   flex-direction: column;
   justify-content: space-between; 
+  
+  flex: 0 0 auto;
+  scroll-snap-align: center;
 }
 
 .frame:hover {
   box-shadow: 0px 0px 40px rgba(255,122,41,0.4);
-  transform: translateY(-5px);
+  transform: translateY(-8px);
   border-color: #FF7A29;
 }
 
@@ -171,23 +180,21 @@ section h3 {
   box-shadow: 0 0 25px rgba(255,90,20,0.25);
   padding: 12px;
   transition: 0.3s;
-  border-radius: 24px;
-  
-  width: 320px; /* Default width */
-  max-width: 100%; /* ไม่ให้เกินหน้าจอ */
+  border-radius: 24px; /* เพิ่มความมน */
+  min-width: 320px; /* ความกว้างขั้นต่ำสำหรับ Scroll */
 }
 
 .bb-card:hover {
   box-shadow: 0 0 35px rgba(255,90,20,0.45);
-  transform: translateY(-5px);
+  transform: translateY(-8px);
   border-color: #FF7A29;
 }
 
 .bb-card iframe, .bb-card img {
   width: 100%;
-  height: 250px; /* ลดความสูงลงนิดหน่อย */
+  height: 280px;
   background: #000;
-  border-radius: 18px;
+  border-radius: 18px; /* จอแสดงผลมน */
 }
 
 .bb-label {
@@ -198,8 +205,8 @@ section h3 {
   text-align: center;
   border-radius: 15px; 
   border-top: none;
-  font-size: 0.9rem;
 }
+
 
 /* Game Dev Cards */
 .dev-card {
@@ -209,22 +216,19 @@ section h3 {
   position: relative;
   transition: 0.3s;
   overflow: hidden;
-  border-radius: 24px;
-  
-  width: 300px;
-  display: flex;
-  flex-direction: column;
+  border-radius: 24px; /* เพิ่มความมน */
+  min-width: 300px; /* ความกว้างขั้นต่ำสำหรับ Scroll */
 }
 
 .dev-card img {
   width: 100%;
-  height: 180px;
-  object-fit: cover;
+  height: 200px; /* กำหนดความสูงรูปให้เท่ากัน */
+  object-fit: cover; /* ให้รูปเต็มพื้นที่โดยไม่เสียสัดส่วน */
   display: block;
 }
 
 .dev-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
   box-shadow: 0 0 40px rgba(255,80,20,0.4);
 }
 
@@ -232,37 +236,12 @@ section h3 {
   background: #1A0E0A;
   padding: 20px;
   color: #FF7A29;
-  flex-grow: 1;
 }
 
-/* --- 7. BUTTONS --- */
-.button-container {
-    text-align: center;
-    margin-top: 30px;
-}
+.dev-info h4 { margin-top: 0; }
 
-.view-all-btn {
-    display: inline-block;
-    padding: 12px 30px;
-    background: #BC2B1A;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 30px;
-    border: 2px solid #BC2B1A;
-    transition: 0.3s;
-    box-shadow: 0 5px 15px rgba(188, 43, 26, 0.3);
-}
 
-.view-all-btn:hover {
-    background: transparent;
-    color: #FF7A29;
-    border-color: #FF7A29;
-    box-shadow: 0 5px 25px rgba(255, 122, 41, 0.5);
-    transform: translateY(-3px);
-}
-
-/* --- 8. FOOTER --- */
+/* --- FOOTER --- */
 footer {
   margin-top: 40px;
   text-align: center;
@@ -270,90 +249,32 @@ footer {
   background: #080808;
   border-top: 2px solid #BC2B1A;
   color: #FF7A29;
-  border-radius: 20px 20px 0 0;
+  border-radius: 20px 20px 0 0; /* มนด้านบนของ Footer */
 }
 
-/* --- 9. FULL GRID (สำหรับหน้าแยก) --- */
+/* --- GRID STYLES (สำหรับหน้าแยก) --- */
+/* ใช้ class นี้ในหน้าแยก เพื่อให้แสดงเป็นตารางเหมือนเดิม */
 .full-grid {
   display: grid;
-  /* Auto-fit จะคำนวณคอลัมน์ให้อัตโนมัติตามขนาดจอ */
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 40px;
   padding-bottom: 40px;
 }
-
-/* Override properties for Grid items */
+/* ในหน้าแยก ไม่ต้องฟิกซ์ความกว้างขั้นต่ำ */
 .full-grid .frame, 
 .full-grid .bb-card, 
 .full-grid .dev-card {
-    width: 100%; /* ในกริดให้ขยายเต็มช่อง */
-    min-width: 0; /* แก้บั๊ก Grid overflow */
-    max-width: 100%;
-    margin: 0 auto;
+    min-width: auto;
+    flex: none;
 }
 
-
-/* --- 10. MEDIA QUERIES (หัวใจของ Responsive) --- */
-
-/* Tablet & Smaller Laptops (Max 1024px) */
-@media (max-width: 1024px) {
-    header {
-        padding: 15px 20px;
-    }
-    section {
-        padding: 40px 20px;
-    }
-}
-
-/* Mobile Devices (Max 768px) */
-@media (max-width: 768px) {
-    /* จัด Header ใหม่ */
+/* Responsive สำหรับมือถือ */
+@media (max-width: 600px) {
     header {
         flex-direction: column;
-        gap: 15px;
-        text-align: center;
-        padding-bottom: 25px;
+        padding: 20px;
     }
-    
-    nav {
-        gap: 10px;
-    }
-
-    /* ปรับขนาดการ์ดในแนวนอนให้เล็กลงหน่อย */
-    .frame, .bb-card, .dev-card {
-        width: 260px; /* ลดขนาดลงเพื่อให้เห็นการ์ดถัดไป */
-        min-width: 260px; 
-    }
-    
-    /* ปรับ Grid ในหน้าแยก */
-    .full-grid {
-        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); /* จอเล็กให้เหลือ 1 คอลัมน์ */
-        gap: 20px;
-    }
-}
-
-/* Small Mobile (Max 480px) */
-@media (max-width: 480px) {
-    .hero h2 {
-        font-size: 2rem;
-    }
-    
-    header h1 {
-        font-size: 1.5rem;
-    }
-
-    nav a {
-        padding: 6px 12px;
-        font-size: 0.85rem;
-    }
-
-    /* การ์ดในหน้าแยก */
-    .full-grid .frame, .full-grid .bb-card, .full-grid .dev-card {
-        width: 100%;
-    }
-
-    /* ปรับ iframe ใน 3D ให้สูงพอดีจอ */
-    .bb-card iframe {
-        height: 220px;
-    }
+    nav { margin-top: 15px; }
+    nav a { margin: 5px; }
+    .hero h2 { font-size: 30px; }
 }
