@@ -1,45 +1,46 @@
-/* style.css - Fix Menu Slide/Overlay */
+/* =========================================
+   NYUXXI PORTFOLIO - MASTER STYLE.CSS
+   รวมทุกหน้าไว้ในไฟล์เดียว (Home, About, 2D, 3D, Projects, Game)
+   ========================================= */
 
-/* --- 1. GLOBAL RESET --- */
+/* --- 1. GLOBAL RESET & BASE STYLES (ใช้ทุกหน้า) --- */
 *, *::before, *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  background: #0A0A0A;
-  color: #fff;
-  font-family: 'Trebuchet MS', sans-serif;
-  overflow-x: hidden;
-  line-height: 1.6;
+    margin: 0;
+    background: #0A0A0A;
+    color: #fff;
+    font-family: 'Trebuchet MS', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
 }
 
-/* --- 2. HEADER & NAVIGATION --- */
+/* --- 2. HEADER & NAVIGATION (ใช้ทุกหน้า) --- */
 header {
-  padding: 15px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid #BC2B1A;
-  background: rgba(10, 10, 10, 0.95);
-  position: sticky;
-  top: 0;
-  z-index: 1000; /* เพิ่ม z-index ให้สูงกว่าทุกอย่าง */
-  border-radius: 0 0 20px 20px;
-  backdrop-filter: blur(10px);
-  /* ลบ flex-wrap ออกเพื่อให้บน PC เมนูไม่หล่นลงมา */
-  white-space: nowrap; 
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #BC2B1A;
+    background: rgba(10, 10, 10, 0.95);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-radius: 0 0 20px 20px;
+    backdrop-filter: blur(10px);
+    white-space: nowrap; 
 }
 
 header h1 {
-  color: #FF7A29;
-  letter-spacing: 2px;
-  margin: 0;
-  font-size: 1.5rem;
-  flex-shrink: 0; /* ป้องกันโลโก้หด */
+    color: #FF7A29;
+    letter-spacing: 2px;
+    margin: 0;
+    font-size: 1.5rem;
+    flex-shrink: 0;
 }
 
-/* --- ปุ่ม Hamburger (ซ่อนบน PC) --- */
 .menu-toggle {
     display: none; 
     background: transparent;
@@ -58,307 +59,409 @@ header h1 {
 }
 
 nav {
-  display: flex;
-  gap: 10px;
-  align-items: center;
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
 nav a {
-  margin-left: 0;
-  color: #FF7A29;
-  text-decoration: none;
-  padding: 8px 15px;
-  border-radius: 20px;
-  transition: 0.3s;
-  font-size: 0.95rem;
+    margin-left: 0;
+    color: #FF7A29;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: 0.3s;
+    font-size: 0.95rem;
 }
 
 nav a:hover {
-  background: rgba(188, 43, 26, 0.2);
+    background: rgba(188, 43, 26, 0.2);
 }
 
-/* --- 3. MEDIA QUERIES (สำหรับมือถือ/แท็บเล็ต) --- */
-@media (max-width: 768px) {
-    header {
-        padding: 15px 20px;
-        flex-wrap: wrap; /* บนมือถือให้ wrap ได้ถ้าจำเป็น */
-    }
-
-    /* แสดงปุ่ม Hamburger */
-    .menu-toggle {
-        display: block;
-    }
-
-    /* --- ส่วนเมนูมือถือ (แก้ให้ลอยทับเนื้อหา) --- */
-    nav {
-        display: none; 
-        position: absolute; /* ทำให้ลอยอยู่เหนือเนื้อหา */
-        top: 100%; /* เริ่มต้นที่ขอบล่างของ Header */
-        left: 0;
-        width: 100%;
-        background-color: rgba(10, 10, 10, 0.98); /* พื้นหลังทึบแสง */
-        flex-direction: column;
-        padding: 20px 0;
-        border-bottom: 2px solid #BC2B1A;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.5); /* เงา */
-        z-index: 999;
-    }
-
-    nav.active {
-        display: flex;
-        animation: slideDown 0.3s ease-out;
-    }
-
-    nav a {
-        width: 100%;
-        text-align: center;
-        padding: 15px;
-        margin: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        font-size: 1.1rem; /* ตัวหนังสือใหญ่ขึ้นกดง่าย */
-    }
-}
-
-/* Animation เลื่อนลง */
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-
-/* --- 4. HERO & SECTIONS --- */
-.hero {
-  text-align: center;
-  padding: 80px 20px;
-  background: radial-gradient(circle at top, rgba(255,122,41,0.3), transparent 70%);
-}
-
-.hero h2 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  color: #FF7A29;
-  margin-bottom: 10px;
-}
-
-section {
-    padding: 60px 20px;
-    max-width: 1200px;
+/* --- 3. COMMON SECTION STYLES (คุมเลย์เอาต์หลัก) --- */
+.section-container {
+    padding: 40px 20px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
-section h3 {
-  color: #FF7A29;
-  margin-bottom: 30px;
-  font-size: 1.8em;
-  padding-left: 15px;
-  border-left: 5px solid #BC2B1A;
-  border-radius: 5px;
+.section-title {
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    font-weight: normal;
 }
 
-.bb-showcase, .gamedev {
-    background: #080808;
-    width: 100%;
-    max-width: 100%;
-}
-
-.bb-showcase > div, .gamedev > div, .bb-showcase h3, .gamedev h3, .bb-showcase .button-container, .gamedev .button-container {
+section h3 { /* สำหรับหน้าย่อยอื่นๆ */
+    color: #FF7A29;
+    margin: 40px auto 30px auto;
+    font-size: 1.8em;
+    padding-left: 15px;
+    border-left: 5px solid #BC2B1A;
+    border-radius: 5px;
     max-width: 1200px;
+}
+
+/* --- 4. BUTTONS & FOOTER (ปุ่มและส่วนท้าย ใช้ทุกหน้า) --- */
+.view-all-btn {
+    display: inline-block;
+    padding: 10px 25px;
+    background: #3C1F1A;
+    color: #FF7A29;
+    text-decoration: none;
+    border-radius: 10px;
+    border: 1px solid #FF7A29;
+    transition: 0.3s;
+    align-self: flex-start;
+}
+.view-all-btn:hover {
+    background: #FF7A29;
+    color: #000;
+}
+
+footer {
+    margin-top: 60px;
+    padding: 60px 20px;
+    background: #050505;
+    border-top: 1px solid #3C1F1A;
+    text-align: left;
     margin-left: auto;
     margin-right: auto;
 }
-.bb-showcase .horizontal-scroll, .gamedev .horizontal-scroll {
-    max-width: 100%;
-}
 
-/* --- 5. CARDS & SCROLL --- */
-.horizontal-scroll {
-  display: flex;
-  overflow-x: auto;
-  gap: 20px;
-  padding: 20px 20px 40px 20px;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
-  scrollbar-color: #BC2B1A #1A0E0A;
-  -webkit-overflow-scrolling: touch;
-}
-.horizontal-scroll::-webkit-scrollbar { height: 8px; }
-.horizontal-scroll::-webkit-scrollbar-track { background: #1A0E0A; border-radius: 4px; }
-.horizontal-scroll::-webkit-scrollbar-thumb { background: #BC2B1A; border-radius: 4px; }
+/* =========================================
+   หน้าหลัก (INDEX.HTML)
+   ========================================= */
 
-.frame, .bb-card, .dev-card {
-    flex: 0 0 auto;
-    scroll-snap-align: center;
-}
-
-.frame {
-  background: #1A0E0A;
-  padding: 12px;
-  border: 3px solid #3C1F1A;
-  box-shadow: 0px 0px 25px rgba(255,122,41,0.15);
-  position: relative;
-  transition: 0.3s;
-  border-radius: 20px;
-  width: 280px; 
-  height: auto;
-  min-height: 380px; 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; 
-}
-.frame:hover {
-  box-shadow: 0px 0px 40px rgba(255,122,41,0.4);
-  transform: translateY(-5px);
-  border-color: #FF7A29;
-}
-.frame img {
-  width: 100%;
-  height: 250px; 
-  object-fit: contain; 
-  background: #000;
-  border-radius: 15px;
-}
-
-.bb-card {
-  background: #111;
-  border: 3px solid #3C1F1A;
-  box-shadow: 0 0 25px rgba(255,90,20,0.25);
-  padding: 12px;
-  transition: 0.3s;
-  border-radius: 24px;
-  width: 320px;
-  max-width: 100%;
-}
-.bb-card:hover {
-  box-shadow: 0 0 35px rgba(255,90,20,0.45);
-  transform: translateY(-5px);
-  border-color: #FF7A29;
-}
-.bb-card iframe, .bb-card img {
-  width: 100%;
-  height: 250px;
-  background: #000;
-  border-radius: 18px;
-}
-.bb-label {
-  margin-top: 12px;
-  padding: 12px;
-  background: #3C1F1A;
-  color: #FF7A29;
-  text-align: center;
-  border-radius: 15px; 
-  border-top: none;
-  font-size: 0.9rem;
-}
-
-.dev-card {
-  background: #111;
-  border: 2px solid #BC2B1A;
-  box-shadow: 0 0 20px rgba(255,80,20,0.15);
-  position: relative;
-  transition: 0.3s;
-  overflow: hidden;
-  border-radius: 24px;
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-}
-.dev-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  display: block;
-}
-.dev-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 40px rgba(255,80,20,0.4);
-}
-.dev-info {
-  background: #1A0E0A;
-  padding: 20px;
-  color: #FF7A29;
-  flex-grow: 1;
-}
-.dev-info h4 { margin-top: 0; }
-
-.button-container {
+/* --- Hero Section (หน้าแรกสุด) --- */
+.hero-section {
     text-align: center;
-    margin-top: 30px;
+    padding: 120px 20px;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, rgba(188, 43, 26, 0.15) 0%, rgba(10, 10, 10, 1) 70%);
+    border-bottom: 1px solid rgba(60, 31, 26, 0.5);
+    margin-bottom: 40px;
 }
-.view-all-btn {
-    display: inline-block;
-    padding: 12px 30px;
+
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: #fff;
+    margin: 0 0 10px 0;
+    letter-spacing: 2px;
+}
+
+.hero-title .highlight {
+    color: #FF7A29;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: #BC2B1A;
+    font-weight: bold;
+    margin: 0 0 20px 0;
+}
+
+.hero-desc {
+    color: #ccc;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.primary-btn {
     background: #BC2B1A;
     color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 30px;
-    border: 2px solid #BC2B1A;
-    transition: 0.3s;
-    box-shadow: 0 5px 15px rgba(188, 43, 26, 0.3);
+    border-color: #BC2B1A;
+    padding: 12px 30px;
+    font-size: 1.1rem;
 }
-.view-all-btn:hover {
+.primary-btn:hover {
+    background: #FF7A29;
+    border-color: #FF7A29;
+    color: #000;
+}
+
+.secondary-btn {
     background: transparent;
     color: #FF7A29;
     border-color: #FF7A29;
-    box-shadow: 0 5px 25px rgba(255, 122, 41, 0.5);
-    transform: translateY(-3px);
+    padding: 12px 30px;
+    font-size: 1.1rem;
 }
-footer {
-  margin-top: 40px;
-  text-align: center;
-  padding: 30px;
-  background: #080808;
-  border-top: 2px solid #BC2B1A;
-  color: #FF7A29;
-  border-radius: 20px 20px 0 0;
+.secondary-btn:hover {
+    background: #FF7A29;
+    color: #000;
 }
 
-.full-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  padding-bottom: 40px;
+/* --- Profile Card (หน้าแรก) --- */
+.profile-card {
+    display: flex;
+    align-items: center;
+    background: #1A0E0A;
+    border: 2px solid #3C1F1A;
+    border-radius: 20px;
+    padding: 30px;
+    gap: 30px;
+    box-shadow: 0px 0px 25px rgba(255,122,41,0.1);
+    transition: 0.3s;
+    margin-top: 20px;
 }
-.full-grid .frame, .full-grid .bb-card, .full-grid .dev-card {
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
+.profile-card:hover { border-color: #FF7A29; }
+.profile-card img {
+    width: 160px;
+    height: 160px;
+    border-radius: 15px; 
+    object-fit: cover;
+}
+.profile-info p { color: #ccc; margin: 5px 0; }
+
+/* --- Education Card --- */
+.edu-card {
+    background: #111;
+    border: 1px solid #3C1F1A;
+    border-left: 5px solid #BC2B1A;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+.edu-card h4 { margin: 0; color: #FF7A29; font-size: 1.2rem; }
+.edu-card p { margin: 5px 0 0; color: #aaa; }
+
+/* --- Skills Pills --- */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+.skills-category {
+    flex: 1;
+    min-width: 200px;
+    background: transparent;
+    padding: 0;
+}
+.skills-category h4 { 
+    margin-top: 0; color: #ccc; font-weight: normal; 
+    margin-bottom: 15px; text-align: center;
+}
+.skills-pills {
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+}
+.pill {
+    background: #22120C; color: #FF7A29; border: 1px solid #3C1F1A;
+    padding: 8px 15px; border-radius: 20px; font-size: 0.85rem;
+}
+
+/* --- Vertical Project Item (หน้าแรก) --- */
+.project-item {
+    display: flex; background: #111; border: 2px solid #3C1F1A;
+    border-radius: 20px; margin-bottom: 30px; overflow: hidden; transition: 0.3s;
+}
+.project-item:hover {
+    border-color: #FF7A29; transform: translateY(-3px);
+    box-shadow: 0px 0px 20px rgba(255,122,41,0.15);
+}
+.project-content {
+    padding: 30px; flex: 1; display: flex; flex-direction: column; justify-content: center;
+}
+.project-content h4 { font-size: 1.4rem; color: #fff; margin-top: 0; margin-bottom: 10px; }
+.tags { display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
+.tag { background: #3C1F1A; color: #FF7A29; padding: 4px 10px; border-radius: 8px; font-size: 0.75rem; }
+.project-content p { color: #ccc; font-size: 0.95rem;}
+.project-content ul { padding-left: 20px; color: #aaa; font-size: 0.9rem; margin-bottom: 25px; }
+.project-content ul li { margin-bottom: 5px; }
+.project-image-box { flex: 1.2; background: #000; min-height: 250px; }
+.project-image-box img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- Grids 2x2 (สำหรับ 2D & 3D หน้าแรก) --- */
+.grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+.frame {
+    background: #1A0E0A; padding: 12px; border: 2px solid #3C1F1A;
+    border-radius: 15px; display: flex; flex-direction: column; transition: 0.3s;
+}
+.frame:hover { border-color: #FF7A29; }
+.frame img { width: 100%; height: 200px; object-fit: contain; background: #000; border-radius: 10px; }
+.bb-label { margin-top: 12px; color: #fff; text-align: center; font-size: 0.9rem; }
+
+.bb-card {
+    background: #111; border: 2px solid #3C1F1A; padding: 12px;
+    transition: 0.3s; border-radius: 15px; display: flex; flex-direction: column;
+}
+.bb-card:hover { border-color: #FF7A29; }
+.bb-card iframe { width: 100%; height: 200px; background: #000; border-radius: 10px; }
+
+
+/* =========================================
+   หน้าย่อย (ABOUT.HTML)
+   ========================================= */
+
+/* --- Profile Box --- */
+.about-container {
+    display: flex; align-items: center; gap: 40px; background: #1A0E0A;
+    padding: 40px; border-radius: 24px; border: 2px solid #3C1F1A;
+    box-shadow: 0 0 30px rgba(255, 122, 41, 0.15); max-width: 1000px; margin: 0 auto;
+}
+.profile-img-box { flex-shrink: 0; position: relative; }
+.profile-img {
+    width: 250px; height: 250px; object-fit: cover; border-radius: 50%;
+    border: 4px solid #BC2B1A; box-shadow: 0 0 25px rgba(255, 122, 41, 0.5); transition: 0.3s;
+}
+.profile-img:hover { transform: scale(1.05) rotate(3deg); border-color: #FF7A29; }
+.about-text h3 { color: #fff; font-size: 2rem; margin-top: 0; }
+
+/* --- จัดกึ่งกลาง Education & Technical Skills --- */
+#education, #skills {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+#education h2, #skills h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 30px;
+}
+#education .skill-card,
+#education .edu-card {
+    max-width: 800px;
+    margin: 0 auto 20px auto; /* ดันกล่องให้อยู่ตรงกลาง */
+}
+
+/* --- จัดกึ่งกลาง Skills Grid (Flexbox) --- */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* จัดให้ไอเทมทั้งหมดอยู่กึ่งกลาง */
+    gap: 20px;
+    max-width: 900px;
     margin: 0 auto;
 }
+.skills-grid .skill-card {
+    background: #1A0E0A; 
+    padding: 15px 20px; 
+    border-radius: 20px;
+    border: 2px solid #3C1F1A; 
+    transition: 0.3s; 
+    box-shadow: 0px 0px 15px rgba(255,122,41,0.1);
+    flex: 0 1 auto; /* ให้ขนาดกล่องพอดีกับเนื้อหาข้างใน */
+    min-width: 180px; 
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* จัดข้อความให้อยู่กลางกล่อง */
+}
+.skills-grid .skill-card:hover {
+    transform: translateY(-5px); 
+    border-color: #FF7A29; 
+    box-shadow: 0px 0px 25px rgba(255,122,41,0.3);
+}
+.skills-grid .skill-card h3 { 
+    margin: 0; 
+    font-size: 1.1rem; 
+    color: #fff; 
+}
 
+
+/* =========================================
+   หน้าโปรเจกต์และแกลลอรี่ (PROJECT.HTML, 2D.HTML, 3D.HTML)
+   ========================================= */
+.full-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px; padding: 0 20px 40px 20px; max-width: 1200px; margin: 0 auto;
+}
+
+.dev-card {
+    background: #111; border: 2px solid #3C1F1A; border-radius: 20px;
+    overflow: hidden; transition: 0.3s; display: flex; flex-direction: column;
+}
+.dev-card img { width: 100%; height: 200px; object-fit: cover; }
+.dev-card:hover { border-color: #FF7A29; transform: translateY(-5px); }
+.dev-info { padding: 20px; background: #1A0E0A; flex-grow: 1; }
+.dev-info h4 { margin: 0 0 5px 0; color: #FF7A29; font-size: 1.2rem; }
+.dev-info p { margin: 0; color: #aaa; font-size: 0.9rem; }
+
+
+/* =========================================
+   หน้าเล่นเกม (GAME1.HTML)
+   ========================================= */
+.game-body {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    height: 100vh; overflow: hidden; user-select: none;
+}
+.game-body header {
+    position: absolute; top: 20px; left: 20px; z-index: 10;
+    background: transparent; border: none; backdrop-filter: none; padding: 0;
+}
+a.back-btn {
+    color: #FF7A29; text-decoration: none; font-weight: bold; border: 2px solid #BC2B1A;
+    padding: 8px 20px; border-radius: 20px; transition: 0.3s; background: rgba(10, 10, 10, 0.8);
+}
+a.back-btn:hover { background: #BC2B1A; color: #fff; }
+
+#game-container {
+    position: relative; border: 4px solid #BC2B1A; border-radius: 10px;
+    box-shadow: 0 0 30px rgba(255, 122, 41, 0.2); overflow: hidden;
+}
+#game-container canvas {
+    display: block; background: linear-gradient(to bottom, #1A0E0A, #2a150f);
+}
+#ui-layer {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; display: flex; flex-direction: column; justify-content: center; align-items: center;
+}
+#score-board {
+    position: absolute; top: 20px; right: 20px; font-size: 24px; color: #fff; font-weight: bold;
+}
+#game-over-screen {
+    background: rgba(0, 0, 0, 0.9); padding: 30px; border-radius: 20px;
+    text-align: center; border: 2px solid #FF7A29; display: none; pointer-events: auto;
+    max-width: 400px; width: 80%;
+}
+#game-over-screen h2 { color: #BC2B1A; font-size: 40px; margin: 0 0 10px 0; }
+#final-score { font-size: 24px; margin-bottom: 25px; color: #fff; }
+
+button.restart-btn {
+    background: #FF7A29; color: #0A0A0A; border: none; padding: 15px 30px;
+    font-size: 18px; font-weight: bold; border-radius: 30px; cursor: pointer; transition: 0.2s;
+}
+button.restart-btn:hover { transform: scale(1.05); box-shadow: 0 0 15px #FF7A29; }
+.controls-hint { position: absolute; bottom: 20px; color: #666; font-size: 14px; }
+
+
+/* =========================================
+   MEDIA QUERIES (มือถือ & แท็บเล็ต)
+   ========================================= */
 @media (max-width: 768px) {
-    .full-grid {
-        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-        gap: 20px;
+    header { padding: 15px 20px; flex-wrap: wrap; }
+    .menu-toggle { display: block; }
+    nav {
+        display: none; position: absolute; top: 100%; left: 0; width: 100%;
+        background-color: rgba(10, 10, 10, 0.98); flex-direction: column; padding: 20px 0;
+        border-bottom: 2px solid #BC2B1A; box-shadow: 0 10px 20px rgba(0,0,0,0.5); z-index: 999;
     }
-}
-@media (max-width: 480px) {
-    .hero h2 { font-size: 2rem; }
-    header h1 { font-size: 1.5rem; }
-}
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 20px;
-}
-
-.skill-card {
-  background: #1A0E0A;
-  padding: 20px;
-  text-align: center;
-  border-radius: 20px;
-  border: 2px solid #3C1F1A;
-  transition: 0.3s;
-  box-shadow: 0px 0px 15px rgba(255,122,41,0.1);
+    nav.active { display: flex; animation: slideDown 0.3s ease-out; }
+    nav a { width: 100%; text-align: center; padding: 15px; margin: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-size: 1.1rem; }
+    
+    .profile-card, .about-container { flex-direction: column; text-align: center; }
+    .project-item { flex-direction: column; }
+    .project-image-box { min-height: 200px; }
+    .grid-2x2 { grid-template-columns: 1fr; }
+    .profile-img { width: 180px; height: 180px; }
 }
 
-.skill-card h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #fff;
-}
-
-.skill-card:hover {
-  transform: translateY(-5px);
-  border-color: #FF7A29;
-  box-shadow: 0px 0px 25px rgba(255,122,41,0.3);
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
